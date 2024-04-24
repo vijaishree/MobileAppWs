@@ -36,7 +36,7 @@ public class UserController {
                             MediaType.APPLICATION_JSON_VALUE},
                 produces = {MediaType.APPLICATION_XML_VALUE ,
                             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<UserDetails> createUser(UserDetailRequest userDetailRequest){
+    public ResponseEntity<UserDetails> createUser(@RequestBody UserDetailRequest userDetailRequest){
         UserDetails userDetail = new UserDetails();
         userDetail.setEmail(userDetailRequest.getEmail());
         userDetail.setFirstName(userDetailRequest.getFirstName());
