@@ -1,6 +1,7 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
 
+import com.appdeveloperblog.app.ws.exceptions.UserControlledException;
 import com.appdeveloperblog.app.ws.ui.model.request.UpdateUserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.response.UserDetails;
@@ -33,6 +34,8 @@ public class UserController {
                 produces = {MediaType.APPLICATION_XML_VALUE ,
                             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UserDetails> getUser(@PathVariable String userId){
+
+        if(true) throw new UserControlledException("user service exception thrown");
 
         UserDetails userDetail = new UserDetails();
         if(user.containsKey(userId)){
