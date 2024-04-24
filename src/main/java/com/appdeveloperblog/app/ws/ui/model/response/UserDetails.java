@@ -1,4 +1,4 @@
-package com.appdeveloperblog.app.ws.ui.model;
+package com.appdeveloperblog.app.ws.ui.model.response;
 
 public class UserDetails {
     private String firstName;

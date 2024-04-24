@@ -1,6 +1,8 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
 import com.appdeveloperblog.app.ws.ui.model.UserDetails;
+import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequest;
+import com.appdeveloperblog.app.ws.ui.model.response.UserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -27,12 +29,20 @@ public class UserController {
         userDetail.setEmail("vijaishreeseenivasagan@gmail.com");
         userDetail.setFirstName("Vijai Shree");
         userDetail.setLastName("Seenivasagan");
-        return new ResponseEntity<>(userDetail, HttpStatus.OK);
+        return new ResponseEntity<UserDetails>(userDetail, HttpStatus.OK);
     }
 
-    @PostMapping
-    public String createUser(){
-        return "create user";
+    @PostMapping(consumes ={MediaType.APPLICATION_XML_VALUE ,
+                            MediaType.APPLICATION_JSON_VALUE},
+                produces = {MediaType.APPLICATION_XML_VALUE ,
+                            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserDetails> createUser(UserDetailRequest userDetailRequest){
+        UserDetails userDetail = new UserDetails();
+        userDetail.setEmail(userDetailRequest.getEmail());
+        userDetail.setFirstName(userDetailRequest.getFirstName());
+        userDetail.setLastName(userDetailRequest.getLastName());
+
+        return new ResponseEntity<UserDetails>(userDetail, HttpStatus.OK);
     }
 
     @PutMapping
