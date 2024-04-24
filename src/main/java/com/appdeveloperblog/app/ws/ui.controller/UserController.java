@@ -1,6 +1,6 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
-import com.appdeveloperblog.app.ws.ui.model.UserDetails;
+
 import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.response.UserDetails;
 import org.springframework.http.HttpStatus;
