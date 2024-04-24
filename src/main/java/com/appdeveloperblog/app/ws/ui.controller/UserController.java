@@ -1,6 +1,7 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
 import com.appdeveloperblog.app.ws.ui.model.UserDetails;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,7 +13,7 @@ public class UserController {
         return "no.of pages = "+ page + "limit ="+limit+"sort = "+sort ;//http://localhost:8080/users?page=1&limit=50
     }
 
-    @GetMapping(path="/{userId}")
+    @GetMapping(path="/{userId}", produces = {MediaType.APPLICATION_XML_VALUE , MediaType.APPLICATION_JSON_VALUE})
     public UserDetails getUser(@PathVariable String userId){
         UserDetails userDetail = new UserDetails();
         userDetail.setEmail("vijaishreeseenivasagan@gmail.com");
