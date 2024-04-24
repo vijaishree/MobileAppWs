@@ -1,9 +1,7 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
-
+import com.appdeveloperblog.app.ws.ui.model.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-
 
 @RestController
 @RequestMapping("users")  //https://localhost:8080/users
@@ -15,8 +13,12 @@ public class UserController {
     }
 
     @GetMapping(path="/{userId}")
-    public String getUser(@PathVariable String userId){
-        return "get userId = "+ userId ;
+    public UserDetails getUser(@PathVariable String userId){
+        UserDetails userDetail = new UserDetails();
+        userDetail.setEmail("vijaishreeseenivasagan@gmail.com");
+        userDetail.setFirstName("Vijai Shree");
+        userDetail.setLastName("Seenivasagan");
+        return userDetail;
     }
 
     @PostMapping
