@@ -3,10 +3,12 @@ package com.appdeveloperblog.app.ws.ui.controller;
 
 import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.response.UserDetails;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,7 +38,7 @@ public class UserController {
                             MediaType.APPLICATION_JSON_VALUE},
                 produces = {MediaType.APPLICATION_XML_VALUE ,
                             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<UserDetails> createUser(@RequestBody UserDetailRequest userDetailRequest){
+    public ResponseEntity<UserDetails> createUser(@Valid @RequestBody UserDetailRequest userDetailRequest){
         UserDetails userDetail = new UserDetails();
         userDetail.setEmail(userDetailRequest.getEmail());
         userDetail.setFirstName(userDetailRequest.getFirstName());
