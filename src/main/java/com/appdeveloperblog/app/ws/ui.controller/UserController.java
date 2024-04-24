@@ -1,7 +1,10 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
 import com.appdeveloperblog.app.ws.ui.model.UserDetails;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,17 +12,22 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @GetMapping
-    public String getUser(@RequestParam(value = "page" ,defaultValue="1") int page  ,@RequestParam(value="limit",defaultValue = "50")int limit, @RequestParam(value = "sort", required = false)String sort ){
+    public String getUser(@RequestParam(value = "page" ,defaultValue="1") int page  ,
+                          @RequestParam(value="limit",defaultValue = "50")int limit,
+                          @RequestParam(value = "sort", required = false)String sort ){
         return "no.of pages = "+ page + "limit ="+limit+"sort = "+sort ;//http://localhost:8080/users?page=1&limit=50
     }
 
-    @GetMapping(path="/{userId}", produces = {MediaType.APPLICATION_XML_VALUE , MediaType.APPLICATION_JSON_VALUE})
-    public UserDetails getUser(@PathVariable String userId){
+    @GetMapping(path="/{userId}",
+                produces = {MediaType.APPLICATION_XML_VALUE ,
+                            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserDetails> getUser(@PathVariable String userId){
+
         UserDetails userDetail = new UserDetails();
         userDetail.setEmail("vijaishreeseenivasagan@gmail.com");
         userDetail.setFirstName("Vijai Shree");
         userDetail.setLastName("Seenivasagan");
-        return userDetail;
+        return new ResponseEntity<>(userDetail, HttpStatus.OK);
     }
 
     @PostMapping
