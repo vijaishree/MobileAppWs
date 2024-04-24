@@ -1,6 +1,7 @@
 package com.appdeveloperblog.app.ws.ui.controller;
 
 
+import com.appdeveloperblog.app.ws.ui.model.request.UpdateUserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequest;
 import com.appdeveloperblog.app.ws.ui.model.response.UserDetails;
 import jakarta.validation.Valid;
@@ -60,9 +61,16 @@ public class UserController {
         return new ResponseEntity<UserDetails>(userDetail, HttpStatus.OK);
     }
 
-    @PutMapping
-    public String updateUser(){
-        return "update user";
+    @PutMapping(path="/{userId}" , consumes ={MediaType.APPLICATION_XML_VALUE ,
+            MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_XML_VALUE ,
+                    MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserDetails> updateUser(@PathVariable String userId ,@Valid @RequestBody UpdateUserDetailRequest updatedUser){
+        UserDetails userDetail = user.get(userId);
+        userDetail.setFirstName(updatedUser.getFirstName());
+        userDetail.setLastName(updatedUser.getLastName());
+        user.put(userId,userDetail);
+        return new ResponseEntity<UserDetails>(userDetail, HttpStatus.OK);
 
     }
 
