@@ -58,6 +58,8 @@ public class UserController {
                             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UserDetails> createUser(@Valid @RequestBody UserDetailRequest userDetailRequest){
         UserDetails userDetail = userService.createUser(userDetailRequest);
+        if(user == null) user = new HashMap<>();
+        user.put(userDetail.getUserId() , userDetail);
         return new ResponseEntity<UserDetails>(userDetail, HttpStatus.OK);
     }
 
