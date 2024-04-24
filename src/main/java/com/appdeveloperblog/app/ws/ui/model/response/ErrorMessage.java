@@ -5,6 +5,14 @@ import java.util.Date;
 public class ErrorMessage {
     private Date timeStamp ;
     private String message;
+    public ErrorMessage(){
+
+    }
+
+    public ErrorMessage(Date timeStamp, String message) {
+        this.timeStamp = timeStamp;
+        this.message = message;
+    }
 
     public String getMessage() {
         return message;
